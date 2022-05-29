@@ -11,9 +11,8 @@
 #include <iostream>
 #include <vector>
 
-SIM_VARIABLES recv_simvars;
-
-std::vector<SIMCONNECT_DATA_FACILITY_VOR> vor_list;
+SIM_VARIABLES simVars;
+std::vector<SIMCONNECT_DATA_FACILITY_VOR> vorList;
 
 void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext) {
 
@@ -27,7 +26,7 @@ void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* p
 		{
 		case REQUEST1:
 		{
-			recv_simvars = *(SIM_VARIABLES*)&pObjData->dwData;
+			simVars = *(SIM_VARIABLES*)&pObjData->dwData;
 		}
 		default:
 			break;
@@ -42,19 +41,15 @@ void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* p
 		{
 		case REQUEST2:
 		{
-	
 			for (size_t i = 0; i < pObjData->dwArraySize; i++)
 			{
 				auto a = *(SIMCONNECT_DATA_FACILITY_VOR*)&pObjData->rgData[i];
-				//std::cout << a->Icao << " " << a->Latitude << " " << a->Longitude << std::endl;
-				vor_list.push_back(a);
+				vorList.push_back(a);
 			}
 		}
 		default:
 			break;
 		}
-
-		
 		break;
 	}
 	default:

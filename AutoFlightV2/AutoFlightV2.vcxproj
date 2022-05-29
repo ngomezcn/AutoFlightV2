@@ -141,6 +141,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="SimConnectDispatcher.cpp" />
     <ClInclude Include="SimConnectManager.h" />
+    <ClInclude Include="SimData.h" />
     <ClInclude Include="SimVariables.h" />
     <ClInclude Include="SimUnits.h" />
   </ItemGroup>

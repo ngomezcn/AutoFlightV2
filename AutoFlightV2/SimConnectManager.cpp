@@ -4,7 +4,7 @@
 #include "DataDefine.h"
 
 SimConnectManager::SimConnectManager(HANDLE* _hSimConnect) : hSimConnect(_hSimConnect) {
-	data = &recv_simvars;
+	data = &simVars;
 }
 
 bool SimConnectManager::connect() {

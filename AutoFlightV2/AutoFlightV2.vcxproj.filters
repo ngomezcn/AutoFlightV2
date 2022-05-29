@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\sim">
+      <UniqueIdentifier>{4a559115-ca56-4eaf-9720-46047cd68161}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SimConnectManager.cpp">
@@ -23,19 +26,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SimConnectManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SimVariables.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimUnits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SimConnectDispatcher.cpp">
@@ -46,6 +40,18 @@
     </ClInclude>
     <ClInclude Include="DataDefine.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimUnits.h">
+      <Filter>Header Files\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="SimVariables.h">
+      <Filter>Header Files\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="SimConnectManager.h">
+      <Filter>Header Files\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="SimData.h">
+      <Filter>Header Files\sim</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
