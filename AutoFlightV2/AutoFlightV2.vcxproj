@@ -132,6 +132,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AutoFlightV2.cpp" />
+    <ClCompile Include="SimConnectManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SimConnectDispatcher.h" />
+    <ClInclude Include="SimConnectManager.h" />
+    <ClInclude Include="Simvars.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AutoFlightV2.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
