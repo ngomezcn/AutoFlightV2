@@ -23,13 +23,24 @@ void SimConnectManager::addToDataDefinition() {
 }
 
 void SimConnectManager::requestData() {
-	SimConnect_RequestDataOnSimObject(*hSimConnect, REQUEST1, DEFINITION1, SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_PERIOD::SIMCONNECT_PERIOD_SIM_FRAME);
+
+	SimConnect_RequestDataOnSimObject(
+		*hSimConnect, 
+		REQUEST1, 
+		DEFINITION1,
+		SIMCONNECT_OBJECT_ID_USER,
+		SIMCONNECT_PERIOD::SIMCONNECT_PERIOD_SIM_FRAME
+	);
 	
 	SimConnect_RequestFacilitiesList(
 		*hSimConnect,
 		SIMCONNECT_FACILITY_LIST_TYPE::SIMCONNECT_FACILITY_LIST_TYPE_VOR,
 		REQUEST2
 	);
+
+
+
+
 }
 
 void SimConnectManager::setData(SIMVARS data) {

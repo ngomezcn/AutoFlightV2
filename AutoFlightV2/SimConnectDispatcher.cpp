@@ -34,13 +34,22 @@ void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* p
 
 		auto* pObjData = (SIMCONNECT_RECV_VOR_LIST*)pData;
 
+
 		switch (pObjData->dwRequestID)
 		{
 		case REQUEST2:
 		{
 			//recv_data = *(SIMVARS*)&pObjData->dwData;
-			std::cout << "recved vor list" << std::endl;
+			std::cout << "recved VOR list" << std::endl;
+			std::cout << "array size " << pObjData->dwArraySize << std::endl;
+			std::cout << "dwOutOf " << pObjData->dwOutOf << std::endl;
+			std::cout << "dwEntryNumber " << pObjData->dwEntryNumber << std::endl;
 
+			for (size_t i = 0; i < pObjData->dwArraySize; i++)
+			{
+				auto a = (SIMCONNECT_DATA_FACILITY_VOR*)&pObjData->rgData[i];
+				std::cout << a->Icao << std::endl;
+			}
 		}
 		default:
 			break;
