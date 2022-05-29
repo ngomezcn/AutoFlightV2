@@ -18,9 +18,10 @@ static enum DATA_REQUEST_ID {
 	REQUEST1,
 };
 
-static enum DATA_NAMES {
-	DATA_VERTICAL_SPEED,
+struct DATA {
+	double THROTTLE1;
 };
+
 
 #ifndef SimConnectManager_h__
 #define SimConnectManager_h__
@@ -28,15 +29,15 @@ static enum DATA_NAMES {
 class SimConnectManager {
 private:
 	HRESULT hr = NULL;
-	HANDLE hSimConnect = NULL;
+	HANDLE* hSimConnect = NULL;
 
 public:
-	SimConnectManager(HANDLE _hSimConnect) : hSimConnect(_hSimConnect) {
+	SimConnectManager(HANDLE* _hSimConnect) : hSimConnect(_hSimConnect) {
 
 	}
 
 	bool connect() {
-		return SUCCEEDED(SimConnect_Open(&hSimConnect, "AutoFlightV2", NULL, 0, 0, 0));
+		return SUCCEEDED(SimConnect_Open(hSimConnect, "AutoFlightV2", NULL, 0, 0, 0));
 	}
 
 	void disconnect() {
@@ -44,28 +45,41 @@ public:
 	}
 
 	void addToDataDefinition() {
-		hr = SimConnect_AddToDataDefinition(hSimConnect, DEFINITION1, "Vertical Speed", "Feet per second", SIMCONNECT_DATATYPE_FLOAT32, 0, DATA_VERTICAL_SPEED);
+		hr = SimConnect_AddToDataDefinition(*hSimConnect, DEFINITION1, "GENERAL ENG THROTTLE LEVER POSITION:1", "percent");
 	}
 
 	void requestData() {
-		hr = SimConnect_RequestDataOnSimObject(hSimConnect, REQUEST1, DEFINITION1,SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_PERIOD_SECOND, SIMCONNECT_DATA_REQUEST_FLAG_CHANGED | SIMCONNECT_DATA_REQUEST_FLAG_TAGGED);
+		hr = SimConnect_RequestDataOnSimObject(*hSimConnect, REQUEST1, DEFINITION1, SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_PERIOD::SIMCONNECT_PERIOD_SIM_FRAME);
+	}
+
+	void setData(DATA data) {
+		SimConnect_SetDataOnSimObject(*hSimConnect, DEFINITION1, SIMCONNECT_OBJECT_ID_USER, 0, 0, sizeof(data), &data);
 	}
 };
 
+DATA myData;
 void CALLBACK dispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext) {
 	
-	switch (pData->SIMCONNECT_RECV::dwID) {
+	switch (pData->dwID) {
 
 	case SIMCONNECT_RECV_ID_SIMOBJECT_DATA:
 	{
 		auto* pObjData = (SIMCONNECT_RECV_SIMOBJECT_DATA*)pData;
-		auto* a = dynamic_cast<SIMCONNECT_RECV_SIMOBJECT_DATA*>(pData);
 
+		switch (pObjData->dwRequestID)
+		{
+		case REQUEST1:
+		{
+			auto* pS = (DATA*)&pObjData->dwData;
 
+			myData.THROTTLE1 = pS->THROTTLE1;
+		}
+		default:
+			break;
+		}
 	}
 
 	default:
-		throw std::runtime_error("Unknow dwID: " + pData->dwID);
 		break;
 	}
 }
@@ -79,7 +93,7 @@ void CALLBACK dispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext)
 class Application {
 private:
 	HANDLE hSimConnect = NULL;
-	SimConnectManager* simConnectManager = new SimConnectManager(hSimConnect);
+	SimConnectManager* simConnectManager = new SimConnectManager(&hSimConnect);
 
 public:
 	Application() {
@@ -105,11 +119,14 @@ public:
 		// Request data
 		simConnectManager->requestData();
 			
-
+		
 		while (true)
 		{
 			SimConnect_CallDispatch(hSimConnect, dispatchProc, NULL);
-			Sleep(100);
+			cout << myData.THROTTLE1 << endl;
+			myData.THROTTLE1 = 99.99f;
+			simConnectManager->setData(myData);
+			Sleep(1000);
 		}
 		
 		simConnectManager->disconnect();
