@@ -132,15 +132,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="AutoFlightV2.cpp" />
     <ClCompile Include="SimConnectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="DataDefine.h" />
+    <ClInclude Include="DataRequest.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SimConnectDispatcher.h" />
+    <ClInclude Include="SimConnectDispatcher.cpp" />
     <ClInclude Include="SimConnectManager.h" />
-    <ClInclude Include="Simvars.hpp" />
+    <ClInclude Include="Simvars.h" />
+    <ClInclude Include="UnitsName.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AutoFlightV2.rc" />

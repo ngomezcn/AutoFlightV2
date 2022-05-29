@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AutoFlightV2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SimConnectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -29,16 +26,25 @@
     <ClInclude Include="SimConnectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SimConnectDispatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Simvars.hpp">
+    <ClInclude Include="Simvars.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitsName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimConnectDispatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataDefine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

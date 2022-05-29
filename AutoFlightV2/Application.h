@@ -11,12 +11,12 @@ class Application {
 private:
 	HANDLE hSimConnect = NULL;
 	SimConnectManager simConnectManager = SimConnectManager(&hSimConnect);
-
+	
 public:
 	Application();
-
-
+	
 	void run();
-
 };
 #endif // Application_h__
+
+

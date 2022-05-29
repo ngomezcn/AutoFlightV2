@@ -5,7 +5,6 @@ Application::Application() {
 	
 };
 
-
 void Application::run() {
 
 	// Connect to fs2020
@@ -21,12 +20,21 @@ void Application::run() {
 	while (true)
 	{
 		simConnectManager.callDispatcher();
-		std::cout << simConnectManager.data->THROTTLE1 << std::endl;
-
 
 		simConnectManager.setData(*simConnectManager.data);
-		Sleep(1000);
+		Sleep(100);
 	}
 
 	simConnectManager.disconnect();
 };
+
+class Aircraft {
+
+};
+
+int main()
+{
+	auto application = Application();
+	application.run();
+}
+

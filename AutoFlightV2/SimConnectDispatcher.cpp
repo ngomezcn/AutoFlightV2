@@ -7,6 +7,9 @@
 	#include <SimConnect.h>
 #endif
 
+#include "DataRequest.h"
+#include <iostream>
+
 SIMVARS recv_data;
 void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext) {
 
@@ -26,7 +29,26 @@ void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* p
 			break;
 		}
 	}
+	case SIMCONNECT_RECV_ID_VOR_LIST:
+	{
 
+		auto* pObjData = (SIMCONNECT_RECV_VOR_LIST*)pData;
+
+		switch (pObjData->dwRequestID)
+		{
+		case REQUEST2:
+		{
+			//recv_data = *(SIMVARS*)&pObjData->dwData;
+			std::cout << "recved vor list" << std::endl;
+
+		}
+		default:
+			break;
+		}
+
+		
+		break;
+	}
 	default:
 		break;
 	}

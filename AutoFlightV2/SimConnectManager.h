@@ -8,7 +8,7 @@
 	#include <SimConnect.h>
 #endif
 
-#include "Simvars.hpp"
+#include "Simvars.h"
 
 class SimConnectManager {
 private:
