@@ -8,7 +8,7 @@
 	#include <SimConnect.h>
 #endif
 
-#include "Simvars.h"
+#include "SimVariables.h"
 
 class SimConnectManager {
 private:
@@ -17,7 +17,7 @@ private:
 
 public:
 	SimConnectManager(HANDLE* _hSimConnect);
-	SIMVARS* data = nullptr;
+	SIM_VARIABLES* data = nullptr;
 	
 	bool connect();
 
@@ -25,9 +25,13 @@ public:
 
 	void addToDataDefinition();
 
-	void requestData();
+	void requestDataOn();
 	
-	void setData(SIMVARS data);
+	void subscribeTo();
+
+	void unubscribeTo();
+	
+	void setData(SIM_VARIABLES data);
 
 	void callDispatcher();
 };

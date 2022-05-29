@@ -141,8 +141,8 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="SimConnectDispatcher.cpp" />
     <ClInclude Include="SimConnectManager.h" />
-    <ClInclude Include="Simvars.h" />
-    <ClInclude Include="UnitsName.h" />
+    <ClInclude Include="SimVariables.h" />
+    <ClInclude Include="SimUnits.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AutoFlightV2.rc" />

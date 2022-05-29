@@ -1,10 +1,10 @@
 #include "SimConnectManager.h"
 #include "SimConnectDispatcher.cpp"
-#include "UnitsName.h"
+#include "SimUnits.h"
 #include "DataDefine.h"
 
 SimConnectManager::SimConnectManager(HANDLE* _hSimConnect) : hSimConnect(_hSimConnect) {
-	data = &recv_data;
+	data = &recv_simvars;
 }
 
 bool SimConnectManager::connect() {
@@ -15,16 +15,15 @@ void SimConnectManager::disconnect() {
 	SimConnect_Close(hSimConnect);
 }
 
-
 void SimConnectManager::addToDataDefinition() {
-	hr = SimConnect_AddToDataDefinition(*hSimConnect, DEFINITION1, "GENERAL ENG THROTTLE LEVER POSITION:1", UnitsName::percent);
-	hr = SimConnect_AddToDataDefinition(*hSimConnect, DEFINITION1, "GENERAL ENG THROTTLE LEVER POSITION:2", UnitsName::percent);
-	hr = SimConnect_AddToDataDefinition(*hSimConnect, DEFINITION1, "AILERON POSITION", UnitsName::position);
+	hr = SimConnect_AddToDataDefinition(*hSimConnect, DEFINITION1, "GENERAL ENG THROTTLE LEVER POSITION:1", SimUnits::percent);
+	hr = SimConnect_AddToDataDefinition(*hSimConnect, DEFINITION1, "GENERAL ENG THROTTLE LEVER POSITION:2", SimUnits::percent);
+	hr = SimConnect_AddToDataDefinition(*hSimConnect, DEFINITION1, "AILERON POSITION", SimUnits::position);
 }
 
-void SimConnectManager::requestData() {
+void SimConnectManager::requestDataOn() {
 
-	SimConnect_RequestDataOnSimObject(
+	hr = SimConnect_RequestDataOnSimObject(
 		*hSimConnect, 
 		REQUEST1, 
 		DEFINITION1,
@@ -32,22 +31,32 @@ void SimConnectManager::requestData() {
 		SIMCONNECT_PERIOD::SIMCONNECT_PERIOD_SIM_FRAME
 	);
 	
-	SimConnect_RequestFacilitiesList(
+	hr = SimConnect_RequestFacilitiesList(
 		*hSimConnect,
 		SIMCONNECT_FACILITY_LIST_TYPE::SIMCONNECT_FACILITY_LIST_TYPE_VOR,
 		REQUEST2
 	);
-
-	SimConnect_SubscribeToFacilities(
-		*hSimConnect,
-		SIMCONNECT_FACILITY_LIST_TYPE::SIMCONNECT_FACILITY_LIST_TYPE_VOR,
-		REQUEST2
-	);
-
-
 }
 
-void SimConnectManager::setData(SIMVARS data) {
+void SimConnectManager::subscribeTo() {
+	
+	hr = SimConnect_SubscribeToFacilities(
+		*hSimConnect,
+		SIMCONNECT_FACILITY_LIST_TYPE::SIMCONNECT_FACILITY_LIST_TYPE_VOR,
+		REQUEST2
+	);
+}
+
+void SimConnectManager::unubscribeTo() {
+
+	hr = SimConnect_UnsubscribeToFacilities(
+		*hSimConnect,
+		SIMCONNECT_FACILITY_LIST_TYPE::SIMCONNECT_FACILITY_LIST_TYPE_VOR
+	);
+}
+
+
+void SimConnectManager::setData(SIM_VARIABLES data) {
 	SimConnect_SetDataOnSimObject(
 		*hSimConnect,
 		DEFINITION1,

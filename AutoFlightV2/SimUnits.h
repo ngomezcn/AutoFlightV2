@@ -2,7 +2,7 @@
 
 typedef const char* Units;
 
-namespace UnitsName {
+namespace SimUnits {
 	Units percent = "percent";
 	Units position = "position";
 	Units radians = "radians";

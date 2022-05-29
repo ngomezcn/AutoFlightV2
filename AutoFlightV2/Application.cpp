@@ -14,7 +14,7 @@ void Application::run() {
 		return;
 
 	simConnectManager.addToDataDefinition();
-	simConnectManager.requestData();
+	simConnectManager.requestDataOn();
 
 
 	while (true)
