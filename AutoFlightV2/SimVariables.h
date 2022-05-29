@@ -6,7 +6,7 @@
 #include <Windows.h>
 #include <SimConnect.h>
 
-// TODO: Categorize by engine, flight model, electrics, control, autopilot, landing/brake, fuel and misc | See: https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Simulation_Variables.htm
+// TODO: Categorize by; engine, flight model, electrics, control, autopilot, landing/brake, fuel and misc | See: https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Simulation_Variables.htm
 
 struct SIM_VARIABLES {
 	double THROTTLE1;
