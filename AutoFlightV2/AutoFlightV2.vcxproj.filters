@@ -26,20 +26,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SimConnectDispatcher.cpp">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DataRequest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DataDefine.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SimUnits.h">
       <Filter>Header Files\sim</Filter>
@@ -51,6 +42,12 @@
       <Filter>Header Files\sim</Filter>
     </ClInclude>
     <ClInclude Include="SimData.h">
+      <Filter>Header Files\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="SimDataDefine.h">
+      <Filter>Header Files\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="SimDataRequest.h">
       <Filter>Header Files\sim</Filter>
     </ClInclude>
   </ItemGroup>

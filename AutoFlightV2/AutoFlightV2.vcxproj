@@ -136,9 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
-    <ClInclude Include="DataDefine.h" />
-    <ClInclude Include="DataRequest.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="SimDataDefine.h" />
+    <ClInclude Include="SimDataRequest.h" />
     <ClInclude Include="SimConnectDispatcher.cpp" />
     <ClInclude Include="SimConnectManager.h" />
     <ClInclude Include="SimData.h" />

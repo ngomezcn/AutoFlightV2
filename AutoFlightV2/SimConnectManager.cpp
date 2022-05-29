@@ -1,10 +1,11 @@
 #include "SimConnectManager.h"
-#include "SimConnectDispatcher.cpp"
 #include "SimUnits.h"
-#include "DataDefine.h"
+#include "SimDataDefine.h"
+
+#include "SimConnectDispatcher.cpp"
 
 SimConnectManager::SimConnectManager(HANDLE* _hSimConnect) : hSimConnect(_hSimConnect) {
-	data = &simVars;
+	simData = &_simData;
 }
 
 bool SimConnectManager::connect() {
@@ -56,17 +57,19 @@ void SimConnectManager::unubscribeTo() {
 }
 
 
-void SimConnectManager::setData(SIM_VARIABLES data) {
+void SimConnectManager::pushData() {
 	SimConnect_SetDataOnSimObject(
 		*hSimConnect,
 		DEFINITION1,
 		SIMCONNECT_OBJECT_ID_USER,
 		0,
 		0,
-		sizeof(data),
-		&data);
+		sizeof(this->simData->simVars),
+		&this->simData->simVars);
 }
 
 void SimConnectManager::callDispatcher() {
-	SimConnect_CallDispatch(*hSimConnect, simConnectDispatcher, NULL);
+
+	SimConnect_CallDispatch(*hSimConnect, simConnectDispatcher, nullptr);
+	
 }

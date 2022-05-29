@@ -9,15 +9,17 @@
 #endif
 
 #include "SimVariables.h"
+#include "SimData.h"
 
 class SimConnectManager {
 private:
 	HRESULT hr = NULL;
 	HANDLE* hSimConnect = NULL;
-
+	
 public:
+	SimData *simData;
+
 	SimConnectManager(HANDLE* _hSimConnect);
-	SIM_VARIABLES* data = nullptr;
 	
 	bool connect();
 
@@ -31,8 +33,10 @@ public:
 
 	void unubscribeTo();
 	
-	void setData(SIM_VARIABLES data);
+	void pushData();
 
 	void callDispatcher();
+	
+	void dispatcher();
 };
 #endif // SimConnectManager_h__

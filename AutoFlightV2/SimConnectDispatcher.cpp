@@ -3,19 +3,16 @@
 #ifndef SimConnectDispatcher_h__
 #define SimConnectDispatcher_h__
 
-#ifndef _SIMCONNECT_API_
-	#include <SimConnect.h>
-#endif
-
-#include "DataRequest.h"
+#include <SimConnect.h>
+#include "SimDataRequest.h"
 #include <iostream>
 #include <vector>
+#include "SimData.h"
 
-SIM_VARIABLES simVars;
-std::vector<SIMCONNECT_DATA_FACILITY_VOR> vorList;
+SimData _simData;
 
 void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext) {
-
+	
 	switch (pData->dwID) {
 
 	case SIMCONNECT_RECV_ID_SIMOBJECT_DATA:
@@ -26,7 +23,7 @@ void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* p
 		{
 		case REQUEST1:
 		{
-			simVars = *(SIM_VARIABLES*)&pObjData->dwData;
+			_simData.simVars = *(SimVariables*)&pObjData->dwData;
 		}
 		default:
 			break;
@@ -34,7 +31,6 @@ void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* p
 	}
 	case SIMCONNECT_RECV_ID_VOR_LIST:
 	{
-
 		auto* pObjData = (SIMCONNECT_RECV_VOR_LIST*)pData;
 
 		switch (pObjData->dwRequestID)
@@ -44,7 +40,7 @@ void CALLBACK simConnectDispatcher(SIMCONNECT_RECV* pData, DWORD cbData, void* p
 			for (size_t i = 0; i < pObjData->dwArraySize; i++)
 			{
 				auto a = *(SIMCONNECT_DATA_FACILITY_VOR*)&pObjData->rgData[i];
-				vorList.push_back(a);
+				_simData.vorList.push_back(a);
 			}
 		}
 		default:

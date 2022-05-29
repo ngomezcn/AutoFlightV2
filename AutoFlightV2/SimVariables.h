@@ -8,7 +8,7 @@
 
 // TODO: Categorize by; engine, flight model, electrics, control, autopilot, landing/brake, fuel and misc | See: https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Simulation_Variables.htm
 
-struct SIM_VARIABLES {
+struct SimVariables {
 	double THROTTLE1;
 	double THROTTLE2;
 	double AILERON_POSITION;

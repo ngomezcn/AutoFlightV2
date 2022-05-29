@@ -1,6 +1,5 @@
 #include "Application.h"
 
-
 Application::Application() {
 	
 };
@@ -13,23 +12,23 @@ void Application::run() {
 	else
 		return;
 
+	// Attach/Init config to SimConnect
 	simConnectManager.addToDataDefinition();
 	simConnectManager.requestDataOn();
-
+	simConnectManager.subscribeTo();
+	simConnectManager.unubscribeTo();
 
 	while (true)
 	{
 		simConnectManager.callDispatcher();
 
-		simConnectManager.setData(*simConnectManager.data);
+		std::cout << "X: " << simConnectManager.simData->simVars.AILERON_POSITION << std::endl;
+
+		simConnectManager.pushData();
 		Sleep(100);
 	}
 
 	simConnectManager.disconnect();
-};
-
-class Aircraft {
-
 };
 
 int main()
