@@ -131,10 +131,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Application.cpp" />
     <ClCompile Include="AutoFlightV2.cpp" />
     <ClCompile Include="SimConnectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Application.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SimConnectDispatcher.h" />
     <ClInclude Include="SimConnectManager.h" />
