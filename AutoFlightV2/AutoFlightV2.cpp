@@ -7,14 +7,12 @@
 
 #include "SimConnect.h"
 
-
-
-
+using namespace std;
 
 #ifndef SimConnectManager_h__
 #define SimConnectManager_h__
 
-static enum DATA_DEFINE_ID { // Used in SimConnect_AddToDataDefinition(...)
+static enum DATA_DEFINE_ID {
 	DEFINITION1,
 };
 
@@ -51,6 +49,7 @@ public:
 
 	void requestData() {
 		hr = SimConnect_RequestDataOnSimObject(phSimConnect, REQUEST1, DEFINITION1,SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_PERIOD_SECOND, SIMCONNECT_DATA_REQUEST_FLAG_CHANGED | SIMCONNECT_DATA_REQUEST_FLAG_TAGGED);
+		cout << hr << endl;
 	}
 };
 #endif // SimConnectManager_h__
@@ -83,7 +82,6 @@ public:
 		// Request data
 		simConnectManager->requestData();
 			
-		// ....
 
 		// Loop
 
