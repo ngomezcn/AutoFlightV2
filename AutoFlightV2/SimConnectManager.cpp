@@ -38,7 +38,11 @@ void SimConnectManager::requestData() {
 		REQUEST2
 	);
 
-
+	SimConnect_SubscribeToFacilities(
+		*hSimConnect,
+		SIMCONNECT_FACILITY_LIST_TYPE::SIMCONNECT_FACILITY_LIST_TYPE_VOR,
+		REQUEST2
+	);
 
 
 }
